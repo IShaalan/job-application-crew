@@ -29,16 +29,21 @@ Before anything else:
 
 ## Step 0.5 — Project Bootstrapping
 
-Set up the project directory structure using a SINGLE bash command for speed:
+Set up the project directory structure using bash commands for speed. Run these three commands:
 
 ```bash
-mkdir -p candidate jobs knowledge/role-packs && \
-cp -r "${CLAUDE_PLUGIN_ROOT}/starter-kit/knowledge/"* knowledge/ 2>/dev/null; \
-[ ! -f .gitignore ] && cp "${CLAUDE_PLUGIN_ROOT}/.gitignore" .gitignore 2>/dev/null; \
-echo "Project bootstrapped."
+mkdir -p candidate jobs knowledge/role-packs
 ```
 
-This copies all baseline knowledge files (review-patterns.md, bullet-library.yaml, role-packs/) and the .gitignore in one operation. Do NOT read and write files individually — use the bash cp command above for speed.
+```bash
+cp -r "${CLAUDE_PLUGIN_ROOT}/starter-kit/knowledge/"* knowledge/
+```
+
+```bash
+test -f .gitignore || cp "${CLAUDE_PLUGIN_ROOT}/.gitignore" .gitignore
+```
+
+This creates the directories and copies all baseline knowledge files (review-patterns.md, bullet-library.yaml, role-packs/) plus .gitignore. Do NOT read and write files individually — use these cp commands for speed.
 
 ## Step 1 — Import Candidate Data
 
