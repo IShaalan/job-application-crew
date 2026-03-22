@@ -293,7 +293,45 @@ workflow:
   max_review_iterations: 3  # pause and ask user after this many build-review cycles
 ```
 
-## Step 7 — Write Output Files
+## Step 7 — Export Setup
+
+Ask the user how they want to export their final resumes and cover letters:
+
+```
+How do you want to export your final documents?
+
+  1. [Markdown only] — files saved locally, copy-paste into any editor (no setup needed)
+  2. Markdown + DOCX — also generates Word documents
+     Requires: pip install python-docx
+  3. Markdown + Google Drive — also uploads to Google Docs
+     Requires: one-time OAuth setup (I'll guide you through it)
+  4. All three — Markdown + DOCX + Google Drive
+```
+
+**If user selects 2 or 4 (DOCX):**
+- Check if python-docx is installed: run `python3 -c "import docx" 2>/dev/null`
+- If not installed, ask: "python-docx is not installed. Want me to install it now? (`pip install python-docx`)"
+- If user agrees, run the install. If not, note that DOCX export won't work until they install it.
+- Set `export.docx: true` in resume-config.yaml
+
+**If user selects 3 or 4 (Google Drive):**
+- Ask: "Google Drive export needs a one-time OAuth setup. Want to do it now or later?"
+- If now: run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/setup_google_drive.py` and walk them through it
+- If later: tell them to run `/job-application export --format gdrive` when ready — it will prompt for setup
+- Set `export.google_drive: true` in resume-config.yaml (or `false` if deferred)
+
+**Default:** Option 1 (Markdown only, no dependencies).
+
+Store in `resume-config.yaml` under `export`:
+
+```yaml
+export:
+  name_pattern: "{name}-{doc_type}-{company}-{role}"
+  docx: false          # true if user chose DOCX
+  google_drive: false   # true if Google Drive is configured
+```
+
+## Step 8 — Write Output Files
 
 After all steps are complete, write three files.
 
@@ -486,8 +524,8 @@ workflow:
 
 export:
   name_pattern: "{name}-{doc_type}-{company}-{role}"
-  google_drive: false
-  # google_drive_folder_id: ""   # uncomment and fill if using Google Drive export
+  docx: false            # set true if user chose DOCX export
+  google_drive: false    # set true after Google Drive OAuth setup
 ```
 
 **Rules for resume-config.yaml:**
@@ -498,7 +536,7 @@ export:
 - LinkedIn `text` should be the short display form (e.g., `linkedin.com/in/username`), `url` is the full URL
 - Website `text` and `url` can be `null` if user has no website
 
-## Step 8 — Completion and Enrichment Decision
+## Step 9 — Completion and Enrichment Decision
 
 After writing all three files, print:
 
