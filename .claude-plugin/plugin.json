@@ -1,0 +1,11 @@
+{
+  "name": "job-application-crew",
+  "version": "1.0.0",
+  "description": "AI-powered job application workflow: research, resume, cover letter — one command. Built from 95+ real applications.",
+  "author": {
+    "name": "Sam Shaalan"
+  },
+  "repository": "https://github.com/shaalan-sam/job-application-crew",
+  "license": "MIT",
+  "keywords": ["resume", "job-search", "cover-letter", "ats", "product-management", "career"]
+}
