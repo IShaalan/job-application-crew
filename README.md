@@ -12,16 +12,19 @@ This system was refined over 95+ real job applications. The PM role pack is batt
 ## Quick Start
 
 ```bash
-# Install the plugin
+# 1. Install the plugin
 claude plugin add shaalan-sam/job-application-crew
 
-# Navigate to your job search directory
+# 2. Create a directory for your job search
 mkdir my-job-search && cd my-job-search
 
-# Set up your profile (one-time)
+# 3. Start Claude Code from that directory
+claude
+
+# 4. Inside Claude Code, set up your profile (one-time)
 /job-application init
 
-# Apply to a job
+# 5. Apply to a job
 /job-application <paste job posting URL or text>
 ```
 
@@ -104,6 +107,30 @@ Every application makes the system smarter. After each job application:
 - **Strategy playbook** expands in `knowledge/strategy-playbook.md` -- what framing works for AI PM vs. Platform PM vs. Growth PM.
 
 By application 10, the system knows your strengths, your failure modes, and which stories land for which roles. By application 50, it writes first drafts that need minimal revision.
+
+## Development
+
+To test the plugin locally without installing from GitHub:
+
+```bash
+# Clone the repo
+git clone https://github.com/shaalan-sam/job-application-crew.git
+
+# Create a test directory
+mkdir /tmp/test-job-search
+
+# Run Claude Code with the local plugin
+claude --plugin-dir ./job-application-crew --cwd /tmp/test-job-search
+
+# Inside Claude Code, test the workflow
+/job-application init
+```
+
+To reset and test again:
+
+```bash
+rm -rf /tmp/test-job-search && mkdir /tmp/test-job-search
+```
 
 ## Contributing
 
