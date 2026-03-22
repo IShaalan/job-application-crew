@@ -476,17 +476,21 @@ Your profile is ready, but your achievement stories are still placeholders.
 Stories are what make cover letters compelling — without them, cover letters
 will be generic and miss the personal texture that makes a candidate stand out.
 
-Would you like to add a few stories now? (takes about 5 minutes per story)
+Would you like to add stories now?
 
-  A) Yes — let's enrich my top 2-3 roles now
-  B) Skip for now — I'll do it later with /job-application enrich
+  A) I have files with stories (cover letters, past applications, reviews)
+     — I'll extract and structure them automatically
+  B) Interview me — ask me questions about my key achievements (~5 min per story)
+  C) Skip for now — I'll do it later with /job-application enrich
 
 If you skip, your first cover letter will work but won't be as strong.
 ```
 
-**If A**: Invoke the enricher skill. Start with the user's most recent role. After each story, ask: "Want to add another, or move on?" Stop after 3 stories or when the user says to move on.
+**If A (files)**: Ask user for file paths or pasted text. Extract stories from the provided content, map to roles, present for review, and write to achievements.md. Follow the enricher's "Path A: Extract from files" flow.
 
-**If B**: Print:
+**If B (interview)**: Run the enricher's STAR interview. Start with the user's most recent role. After each story, ask: "Want to add another, or move on?" Stop after 3 stories or when the user says to move on.
+
+**If C (skip)**: Print:
 ```
 No problem. When you're ready, run:
   /job-application enrich

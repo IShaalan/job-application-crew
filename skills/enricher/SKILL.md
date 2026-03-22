@@ -23,16 +23,53 @@ The enricher operates in three modes depending on the argument passed.
 
 1. Read `candidate/profile.yaml` for the full role list.
 2. Read `candidate/achievements.md` to count existing stories per role.
-3. Present a list: "Which role do you want to add a story for?"
+3. Ask how the user wants to add stories:
+
+```
+How would you like to add achievement stories?
+
+  A) I have files with stories already (cover letters, past applications, performance reviews)
+     Give me file paths or paste the text — I'll extract and structure the stories for you
+  B) Interview me — ask me questions about each role
+```
+
+#### Path A: Extract from files
+
+1. User provides file paths (drag-drop to paste paths) or pastes text from cover letters, past applications, or other documents containing their stories.
+2. Read the provided files.
+3. Extract achievement stories from the content — look for: specific accomplishments, metrics, outcomes, decisions made, challenges overcome.
+4. Map each story to a role from `candidate/profile.yaml` based on company name, role title, or context.
+5. Present extracted stories to the user for review:
+   ```
+   I found [N] stories in your files:
+
+   1. [Role] | [Company] — "[Summary]"
+      Result: [metric extracted]
+
+   2. [Role] | [Company] — "[Summary]"
+      Result: [metric extracted]
+
+   Want to save all of these, or review them one by one?
+   ```
+6. For any story missing a clear metric, ask: "This story doesn't have a clear number. Can you add one? Even a rough estimate helps."
+7. Write approved stories to `candidate/achievements.md`.
+
+#### Path B: STAR Interview
+
+1. Present role list: "Which role do you want to add a story for?"
    - Show the story count per role, e.g.: "Product Manager | CurrentCo (2 stories)", "Senior Designer | AgencyCo (0 stories)"
-4. User picks a role.
-5. Run the STAR interview:
+2. User picks a role.
+3. Run the STAR interview:
    - "Tell me about a significant achievement at [Company]. What was the situation?"
    - "What was your specific task or responsibility?"
    - "What actions did you take? Be specific about YOUR contribution."
    - "What was the result? Do you have numbers? Even rough estimates help."
      - If the user provides no numbers: "Was it closer to 10% or 50%? Even a ballpark helps."
-6. Write to `candidate/achievements.md` in this format:
+4. Write to `candidate/achievements.md`.
+
+#### Story format (both paths)
+
+Write each story to `candidate/achievements.md` in this format:
 
 ```markdown
 ## [Role] | [Company] — "[One-line summary]"
