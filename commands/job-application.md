@@ -1,6 +1,8 @@
 ---
 name: job-application
-description: AI-powered resume and cover letter workflow for job applications. Sub-commands: init (setup), enrich (profile management), update-knowledge (sync plugin knowledge), or pass a job URL/text to run the full workflow. Also supports: research, build, cover-letter, export to re-run individual phases.
+description: AI-powered resume and cover letter workflow for job applications. Sub-commands: init (setup), enrich (add stories), update-knowledge (sync plugin knowledge), or pass a job URL/text to run the full workflow.
+disable-model-invocation: true
+argument-hint: "<job-url-or-text> | init | enrich | build | cover-letter | export | research | update-knowledge"
 ---
 
 # /job-application Command

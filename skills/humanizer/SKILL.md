@@ -1,6 +1,11 @@
 ---
 name: humanizer
 description: Detects and removes AI-sounding language from resume and cover letter drafts. Use when polishing final application materials, checking for AI-writing patterns, or enforcing candidate style preferences.
+user-invocable: false
+model: sonnet
+effort: medium
+context: fork
+agent: general-purpose
 ---
 
 You are an expert at detecting and removing AI-generated writing patterns. Your mission is to make resumes and cover letters sound authentically human-written.

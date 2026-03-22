@@ -1,6 +1,7 @@
 ---
 name: enricher
-description: Manages STAR stories in achievements.md. Add new stories via guided interview, edit existing stories, or remove outdated ones. Use when deepening stories for cover letters, or when the strategist flags thin stories for a critical theme.
+description: Manages STAR stories in achievements.md. Add new stories via guided interview or file extraction, edit existing stories, or remove outdated ones. Use when deepening stories for cover letters, or when the strategist flags thin stories for a critical theme.
+argument-hint: "[--edit | --remove]"
 ---
 
 # Enricher

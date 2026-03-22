@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "AI-powered job application workflow: research, resume, cover letter — one command. Built from 95+ real applications.",
   "author": {
-    "name": "Sam Shaalan"
+    "name": "Sam Shaalan",
+    "url": "https://shaalan.xyz"
   },
+  "homepage": "https://github.com/IShaalan/job-application-crew",
   "repository": "https://github.com/IShaalan/job-application-crew",
   "license": "MIT",
   "keywords": ["resume", "job-search", "cover-letter", "ats", "product-management", "career"]
