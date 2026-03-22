@@ -47,15 +47,28 @@ Ask the user which path they want to take:
 ```
 Let's build your profile. Do you have an existing resume to start from?
 
-  A) Yes — upload or paste resume(s) (PDF, DOCX, or plain text)
-  B) No — I'll answer a few questions instead
+  A) Yes — I have a resume file or text I can share
+  B) No — I'll answer a few questions instead (takes about 5 minutes)
 ```
 
 ### Path A: Resume Import
 
-1. Ask: "Upload your resume file(s), or paste the text directly. You can provide multiple resumes if you have role-specific versions."
+1. Ask with clear instructions:
+```
+Share your resume in any of these ways:
 
-2. **File conversion**: If the user provides PDF or DOCX files, use the `markitdown` skill to convert them to text. If `markitdown` is unavailable or the conversion fails, ask the user to paste the resume text directly instead. Do not error out.
+  1. Drag and drop a file into this chat (PDF, DOCX, or TXT)
+  2. Paste the full text of your resume right here
+  3. Provide a file path on your machine (e.g., ~/Documents/resume.pdf)
+
+I'll extract your roles, skills, and education from it. You'll get a chance to review and correct everything before anything is saved.
+
+Have more than one version? You can share multiple — I'll merge the best parts from each.
+```
+
+Wait for the user to provide their resume. Do NOT proceed until they share content.
+
+2. **File conversion**: If the user provides a file path to a PDF or DOCX, use the `markitdown` skill to convert it to text. If the user drags a file, read it directly. If `markitdown` is unavailable or the conversion fails, tell the user: "I couldn't read that file format. Could you paste the resume text directly instead?" Do not error out.
 
 3. **Extract structured data** from the resume text:
    - **Roles**: title, company, location, start date, end date, bullet points
