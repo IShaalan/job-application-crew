@@ -63,11 +63,10 @@ Let's build your profile. Do you have an existing resume to start from?
 Share your resume in either of these ways:
 
   1. Give me the file path (e.g., ~/Documents/resume.pdf) — I can read PDF, DOCX, and TXT files directly from your machine
+     Tip: drag and drop files into the terminal to paste their paths
   2. Paste the full text of your resume right here in the chat
 
-I'll extract your roles, skills, and education from it. You'll get a chance to review and correct everything before anything is saved.
-
-Have more than one version? You can share multiple — I'll merge the best parts from each.
+You can share multiple files at once — I'll merge the best parts from each. I'll extract your roles, skills, and education and you'll get a chance to review and correct everything before anything is saved.
 ```
 
 Wait for the user to provide their resume. Do NOT proceed until they share content.
