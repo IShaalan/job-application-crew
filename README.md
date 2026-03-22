@@ -116,11 +116,11 @@ To test the plugin locally without installing from GitHub:
 # Clone the repo
 git clone https://github.com/shaalan-sam/job-application-crew.git
 
-# Create a test directory
-mkdir /tmp/test-job-search
+# Create a test directory and cd into it
+mkdir /tmp/test-job-search && cd /tmp/test-job-search
 
 # Run Claude Code with the local plugin
-claude --plugin-dir ./job-application-crew --cwd /tmp/test-job-search
+claude --plugin-dir /path/to/job-application-crew
 
 # Inside Claude Code, test the workflow
 /job-application init
@@ -129,7 +129,7 @@ claude --plugin-dir ./job-application-crew --cwd /tmp/test-job-search
 To reset and test again:
 
 ```bash
-rm -rf /tmp/test-job-search && mkdir /tmp/test-job-search
+rm -rf /tmp/test-job-search && mkdir /tmp/test-job-search && cd /tmp/test-job-search
 ```
 
 ## Contributing
