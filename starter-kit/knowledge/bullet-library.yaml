@@ -1,0 +1,453 @@
+# Bullet Library
+# This file contains proven resume bullets with ratings from past applications.
+# Bullets are added automatically during the retrospective phase or imported from past resumes.
+#
+# Variables used in seed examples:
+#   {product}    - Product or feature name
+#   {N}          - Numeric value (users, percentage, etc.)
+#   {timeframe}  - Time period (e.g., "18 months", "Q3 2024")
+#   {outcome}    - Business result or metric
+#   {tool}       - Tool, framework, or technology name
+#   {team_size}  - Number of people on the team
+#   {company}    - Company or organization name
+
+metadata:
+  created_at: null  # Will be set when first populated
+  total_bullets: 0
+  by_quality:
+    high: 0
+    medium: 0
+    low: 0
+  last_updated: null
+
+# Bullet structure:
+#
+#   - id: "category-subcategory-NNN"
+#     text: "The bullet text with {variables} for templating"
+#     tags: [tag1, tag2, tag3]
+#     source_role: "Role title"
+#     source_company: "Company name"
+#     source_files: ["resume-v3.txt"]
+#     times_used: 5
+#     human_rating: "approved_no_changes"  # approved_no_changes | approved_with_edits | rejected | imported
+#     estimated_quality: "high"  # high | medium | low
+#     notes: "Context on when this bullet works best"
+#     created_at: "2024-01-15T10:00:00Z"
+#     last_used: "2024-06-01"
+#     edit_history:
+#       - original: "original text if edited"
+#         feedback: "why it was edited"
+
+# =============================================================================
+# SEED BULLETS — Product Manager
+# =============================================================================
+
+bullets:
+
+  # ---------------------------------------------------------------------------
+  # PM: Product Launch & Growth
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-launch-001"
+    text: "Launched {product} from 0 to {N} users in {timeframe}, achieving top App Store rankings in {N}+ regions globally."
+    tags: [product-launch, 0-to-1, growth, mobile, metrics]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Strong for 0-to-1 and growth PM roles. Replace {product} with your app name."
+
+  - id: "pm-launch-002"
+    text: "Led cross-functional team of {team_size} to ship {product}, driving {N}% increase in {outcome}."
+    tags: [product-launch, cross-functional, metrics]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Versatile launch bullet. Works for any PM role that values cross-functional leadership."
+
+  - id: "pm-launch-003"
+    text: "Shipped {product} MVP in {timeframe}, validating core assumptions through {N} beta users before full launch."
+    tags: [product-launch, mvp, validation, lean]
+    source_role: "Product Manager"
+    estimated_quality: "medium"
+    notes: "Good for startup and lean methodology roles."
+
+  # ---------------------------------------------------------------------------
+  # PM: Funnel & Conversion
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-funnel-001"
+    text: "Owned full sign-up, activation, and conversion funnel, improving activation rate {N}% and tripling trial-to-paid conversion."
+    tags: [funnel, activation, conversion, PLG, growth]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Strong for PLG, growth, and developer tool roles."
+
+  - id: "pm-funnel-002"
+    text: "Improved {N}-day retention {N}% via onboarding optimization and growth experiments."
+    tags: [retention, onboarding, growth, experimentation]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Works for any role caring about retention and experimentation."
+
+  - id: "pm-funnel-003"
+    text: "Redesigned trial onboarding flow, increasing free-to-paid conversion by {N}% and reducing time-to-value from {N} days to {N} days."
+    tags: [funnel, onboarding, conversion, PLG]
+    source_role: "Growth Product Manager"
+    estimated_quality: "high"
+    notes: "Strong for PLG and SaaS growth roles."
+
+  # ---------------------------------------------------------------------------
+  # PM: Strategy & Roadmap
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-strategy-001"
+    text: "Defined product strategy and {timeframe} roadmap, aligning {team_size}+ stakeholders and securing {outcome}."
+    tags: [strategy, roadmap, stakeholder-management]
+    source_role: "Senior Product Manager"
+    estimated_quality: "high"
+    notes: "Senior/Lead PM roles. Fill in budget allocation or exec buy-in as outcome."
+
+  - id: "pm-strategy-002"
+    text: "Prioritized backlog using RICE framework, increasing team velocity {N}% by eliminating low-impact work."
+    tags: [prioritization, backlog, velocity, frameworks]
+    source_role: "Product Manager"
+    estimated_quality: "medium"
+    notes: "Shows structured prioritization. Replace RICE with whatever framework you use."
+
+  - id: "pm-strategy-003"
+    text: "Led quarterly planning across {team_size} squads, balancing technical debt reduction with feature delivery to hit {outcome}."
+    tags: [strategy, planning, technical-debt, execution]
+    source_role: "Senior Product Manager"
+    estimated_quality: "medium"
+    notes: "Shows ability to balance competing priorities at scale."
+
+  # ---------------------------------------------------------------------------
+  # PM: Customer Discovery & Research
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-discovery-001"
+    text: "Conducted {N}+ customer interviews to identify pain points, defining requirements that addressed top {N} requests."
+    tags: [customer-discovery, research, requirements]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Essential for any PM role. Shows customer-driven approach."
+
+  - id: "pm-discovery-002"
+    text: "Built VoC loops using {tool} to structure support intake, tagging, and feature prioritization."
+    tags: [voice-of-customer, feedback-loops, tooling]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Shows systematic approach to customer feedback."
+
+  - id: "pm-discovery-003"
+    text: "Ran {N} usability tests per sprint, reducing post-launch defects by {N}% and cutting design iteration cycles in half."
+    tags: [usability, research, quality, iteration]
+    source_role: "Product Manager"
+    estimated_quality: "medium"
+    notes: "Good for roles emphasizing UX and quality."
+
+  # ---------------------------------------------------------------------------
+  # PM: AI/ML Product
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-ai-001"
+    text: "Launched AI-powered {product} reducing {outcome} by {N}%, validated through A/B testing with {N}+ users."
+    tags: [ai, product-launch, experimentation, metrics]
+    source_role: "AI Product Manager"
+    estimated_quality: "high"
+    notes: "AI PM roles. Specific product + metric + validation method."
+
+  - id: "pm-ai-002"
+    text: "Established model monitoring using {tool}, tracking quality drift, latency, and cost metrics across production AI agents."
+    tags: [ai, monitoring, operations, tools]
+    source_role: "AI Product Manager"
+    estimated_quality: "high"
+    notes: "Demonstrates operational AI maturity. Name specific tools."
+
+  - id: "pm-ai-003"
+    text: "Designed human-in-the-loop review workflow reducing AI error rate from {N}% to {N}% while maintaining {N}x processing speed."
+    tags: [ai, human-in-the-loop, quality, workflow]
+    source_role: "AI Product Manager"
+    estimated_quality: "high"
+    notes: "Shows responsible AI and practical guardrails."
+
+  # ---------------------------------------------------------------------------
+  # PM: Platform & Internal Tools
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-platform-001"
+    text: "Unified {N} fragmented internal tools into single platform, reducing context-switching by {N}% across {team_size} teams."
+    tags: [platform, internal-tools, unification, productivity]
+    source_role: "Platform Product Manager"
+    estimated_quality: "high"
+    notes: "Internal/platform PM roles. Shows consolidation ability."
+
+  - id: "pm-platform-002"
+    text: "Designed and shipped self-service API enabling {N} partner integrations in {timeframe}, eliminating {N}-week manual onboarding."
+    tags: [platform, api, integrations, self-service]
+    source_role: "Platform Product Manager"
+    estimated_quality: "high"
+    notes: "API/platform/integration roles."
+
+  - id: "pm-platform-003"
+    text: "Led migration of {N}+ users from legacy system to new platform with {N}% adoption in {timeframe} and zero downtime."
+    tags: [platform, migration, adoption, change-management]
+    source_role: "Platform Product Manager"
+    estimated_quality: "medium"
+    notes: "Shows migration and change management skills."
+
+  # ---------------------------------------------------------------------------
+  # PM: Enterprise & B2B
+  # ---------------------------------------------------------------------------
+
+  - id: "pm-enterprise-001"
+    text: "Increased deal closure rate by {N}% through cross-functional collaboration delivering value-driven solutions addressing customer pain points."
+    tags: [enterprise, sales, cross-functional, b2b]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Enterprise/B2B roles. Bridges product and sales."
+
+  - id: "pm-enterprise-002"
+    text: "Deployed {tool} CRM enabling B2B sales nurturing workflows, reducing time-to-close by {N}% and enabling marketing automation."
+    tags: [enterprise, crm, sales-enablement, automation]
+    source_role: "Product Manager"
+    estimated_quality: "high"
+    notes: "Shows GTM and sales enablement experience."
+
+  - id: "pm-enterprise-003"
+    text: "Managed {N}+ enterprise accounts generating ${N}M ARR, maintaining {N}% renewal rate through quarterly business reviews."
+    tags: [enterprise, revenue, retention, account-management]
+    source_role: "Senior Product Manager"
+    estimated_quality: "medium"
+    notes: "Shows enterprise scale and revenue responsibility."
+
+# =============================================================================
+# SEED BULLETS — Software Engineer
+# =============================================================================
+
+  # ---------------------------------------------------------------------------
+  # SE: System Design & Architecture
+  # ---------------------------------------------------------------------------
+
+  - id: "se-arch-001"
+    text: "Architected {product} microservices handling {N}+ requests/second with {N}% uptime over {timeframe}."
+    tags: [architecture, microservices, scale, reliability]
+    source_role: "Senior Software Engineer"
+    estimated_quality: "high"
+    notes: "Backend and platform engineering roles."
+
+  - id: "se-arch-002"
+    text: "Designed event-driven architecture using {tool}, reducing inter-service latency by {N}% and enabling real-time data processing."
+    tags: [architecture, event-driven, performance, real-time]
+    source_role: "Software Engineer"
+    estimated_quality: "high"
+    notes: "Shows modern architecture patterns."
+
+  - id: "se-arch-003"
+    text: "Led migration from monolith to microservices, reducing deployment cycle from {timeframe} to {timeframe} with zero customer-facing downtime."
+    tags: [architecture, migration, deployment, reliability]
+    source_role: "Senior Software Engineer"
+    estimated_quality: "high"
+    notes: "Strong for platform and infrastructure roles."
+
+  # ---------------------------------------------------------------------------
+  # SE: Performance & Optimization
+  # ---------------------------------------------------------------------------
+
+  - id: "se-perf-001"
+    text: "Optimized database queries reducing API response time from {N}ms to {N}ms, improving p99 latency by {N}%."
+    tags: [performance, database, api, optimization]
+    source_role: "Software Engineer"
+    estimated_quality: "high"
+    notes: "Backend roles focused on performance."
+
+  - id: "se-perf-002"
+    text: "Reduced cloud infrastructure costs by {N}% through autoscaling optimization and right-sizing, saving ${N}K annually."
+    tags: [performance, cost-optimization, cloud, infrastructure]
+    source_role: "Software Engineer"
+    estimated_quality: "high"
+    notes: "Shows cost awareness alongside technical skills."
+
+  - id: "se-perf-003"
+    text: "Implemented caching layer using {tool}, reducing database load by {N}% and improving page load time from {N}s to {N}s."
+    tags: [performance, caching, optimization, frontend]
+    source_role: "Software Engineer"
+    estimated_quality: "medium"
+    notes: "Full-stack or backend roles."
+
+  # ---------------------------------------------------------------------------
+  # SE: Code Quality & DevOps
+  # ---------------------------------------------------------------------------
+
+  - id: "se-quality-001"
+    text: "Established CI/CD pipeline using {tool}, reducing deployment frequency from weekly to {N}x daily with {N}% fewer rollbacks."
+    tags: [devops, ci-cd, deployment, quality]
+    source_role: "Software Engineer"
+    estimated_quality: "high"
+    notes: "Platform engineering and DevOps-adjacent roles."
+
+  - id: "se-quality-002"
+    text: "Increased test coverage from {N}% to {N}%, reducing production incidents by {N}% over {timeframe}."
+    tags: [testing, quality, reliability, coverage]
+    source_role: "Software Engineer"
+    estimated_quality: "medium"
+    notes: "Shows commitment to engineering quality."
+
+  - id: "se-quality-003"
+    text: "Led adoption of {tool} for observability, reducing MTTR from {N} hours to {N} minutes across {team_size} services."
+    tags: [observability, devops, incident-response, monitoring]
+    source_role: "Senior Software Engineer"
+    estimated_quality: "high"
+    notes: "Platform, SRE, and infrastructure roles."
+
+  # ---------------------------------------------------------------------------
+  # SE: Frontend & User Experience
+  # ---------------------------------------------------------------------------
+
+  - id: "se-frontend-001"
+    text: "Built responsive {product} UI using {tool}, achieving {N}ms First Contentful Paint and {N}+ Lighthouse score."
+    tags: [frontend, performance, ui, web-vitals]
+    source_role: "Frontend Engineer"
+    estimated_quality: "high"
+    notes: "Frontend-specific roles."
+
+  - id: "se-frontend-002"
+    text: "Developed component library used by {team_size} teams, reducing UI development time by {N}% and ensuring design consistency."
+    tags: [frontend, design-system, components, reusability]
+    source_role: "Frontend Engineer"
+    estimated_quality: "high"
+    notes: "Shows scalable frontend thinking."
+
+  - id: "se-frontend-003"
+    text: "Improved web accessibility to WCAG 2.1 AA compliance, expanding addressable user base by {N}%."
+    tags: [frontend, accessibility, compliance, inclusion]
+    source_role: "Frontend Engineer"
+    estimated_quality: "medium"
+    notes: "Roles emphasizing accessibility and inclusion."
+
+  # ---------------------------------------------------------------------------
+  # SE: ML Engineering
+  # ---------------------------------------------------------------------------
+
+  - id: "se-ml-001"
+    text: "Built ML pipeline processing {N}TB daily, reducing model training time from {N} hours to {N} minutes using {tool}."
+    tags: [ml-engineering, pipeline, scale, training]
+    source_role: "ML Engineer"
+    estimated_quality: "high"
+    notes: "ML engineering and data platform roles."
+
+  - id: "se-ml-002"
+    text: "Deployed model serving infrastructure handling {N}+ predictions/second with {N}ms p95 latency using {tool}."
+    tags: [ml-engineering, inference, scale, deployment]
+    source_role: "ML Engineer"
+    estimated_quality: "high"
+    notes: "ML infrastructure and platform roles."
+
+  - id: "se-ml-003"
+    text: "Implemented feature store using {tool}, reducing feature engineering time by {N}% and enabling model retraining in {timeframe}."
+    tags: [ml-engineering, feature-store, tooling, efficiency]
+    source_role: "ML Engineer"
+    estimated_quality: "medium"
+    notes: "ML platform and data engineering roles."
+
+# =============================================================================
+# SEED BULLETS — Designer
+# =============================================================================
+
+  # ---------------------------------------------------------------------------
+  # Designer: Product Design & UX
+  # ---------------------------------------------------------------------------
+
+  - id: "design-ux-001"
+    text: "Redesigned {product} onboarding flow, increasing task completion rate from {N}% to {N}% based on {N}+ usability sessions."
+    tags: [ux, onboarding, usability, research, metrics]
+    source_role: "Product Designer"
+    estimated_quality: "high"
+    notes: "Core product design bullet. Shows research-driven design."
+
+  - id: "design-ux-002"
+    text: "Led design for {product} serving {N}+ users, collaborating with {team_size} engineers and {N} PMs across {N} squads."
+    tags: [ux, cross-functional, scale, leadership]
+    source_role: "Product Designer"
+    estimated_quality: "high"
+    notes: "Shows ability to work at scale with cross-functional teams."
+
+  - id: "design-ux-003"
+    text: "Created end-to-end user flows for {N} core workflows, reducing support tickets by {N}% through intuitive self-service design."
+    tags: [ux, user-flows, self-service, support-reduction]
+    source_role: "Product Designer"
+    estimated_quality: "medium"
+    notes: "Shows business impact of design decisions."
+
+  # ---------------------------------------------------------------------------
+  # Designer: Research & Insights
+  # ---------------------------------------------------------------------------
+
+  - id: "design-research-001"
+    text: "Conducted {N}+ user interviews and {N} usability studies, synthesizing insights into actionable design recommendations adopted by {team_size} teams."
+    tags: [research, interviews, usability, synthesis]
+    source_role: "UX Researcher"
+    estimated_quality: "high"
+    notes: "UX Researcher roles. Shows volume and impact."
+
+  - id: "design-research-002"
+    text: "Built research repository cataloging {N}+ insights, reducing duplicate research by {N}% and accelerating design decisions."
+    tags: [research, repository, insights, efficiency]
+    source_role: "UX Researcher"
+    estimated_quality: "medium"
+    notes: "Shows systematic approach to research operations."
+
+  - id: "design-research-003"
+    text: "Designed and ran A/B tests on {N} design variants, identifying winning pattern that improved conversion by {N}%."
+    tags: [research, experimentation, ab-testing, conversion]
+    source_role: "UX Researcher"
+    estimated_quality: "high"
+    notes: "Shows quantitative research skills."
+
+  # ---------------------------------------------------------------------------
+  # Designer: Visual & Brand
+  # ---------------------------------------------------------------------------
+
+  - id: "design-visual-001"
+    text: "Designed and shipped design system with {N}+ components, adopted by {team_size} product teams and reducing design-to-dev handoff time by {N}%."
+    tags: [design-system, components, visual, consistency]
+    source_role: "Product Designer"
+    estimated_quality: "high"
+    notes: "Strong for design system and senior design roles."
+
+  - id: "design-visual-002"
+    text: "Led brand refresh across {N} digital touchpoints, increasing brand recognition by {N}% in post-launch survey."
+    tags: [brand, visual, refresh, metrics]
+    source_role: "Visual Designer"
+    estimated_quality: "medium"
+    notes: "Brand and visual design roles."
+
+  - id: "design-visual-003"
+    text: "Created illustration system and iconography guidelines used across {product}, ensuring visual consistency across {N} platforms."
+    tags: [visual, illustration, guidelines, consistency]
+    source_role: "Visual Designer"
+    estimated_quality: "medium"
+    notes: "Visual and brand designer roles."
+
+  # ---------------------------------------------------------------------------
+  # Designer: Design Leadership
+  # ---------------------------------------------------------------------------
+
+  - id: "design-lead-001"
+    text: "Built and managed design team of {team_size}, establishing critique culture that improved design quality scores by {N}%."
+    tags: [leadership, team-building, critique, quality]
+    source_role: "Design Lead"
+    estimated_quality: "high"
+    notes: "Design management and leadership roles."
+
+  - id: "design-lead-002"
+    text: "Established design ops processes reducing design cycle time from {N} weeks to {N} week, enabling {N}x faster iteration."
+    tags: [leadership, design-ops, process, efficiency]
+    source_role: "Design Manager"
+    estimated_quality: "high"
+    notes: "Design management roles focused on process improvement."
+
+  - id: "design-lead-003"
+    text: "Mentored {team_size} junior designers through structured growth plans, with {N} promoted within {timeframe}."
+    tags: [leadership, mentoring, growth, team-development]
+    source_role: "Design Lead"
+    estimated_quality: "medium"
+    notes: "Shows people management and development skills."

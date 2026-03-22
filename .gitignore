@@ -1,6 +1,6 @@
-candidate/
-jobs/
-config/
+/candidate/
+/jobs/
+/config/
 venv/
 token*.json
 credentials.json

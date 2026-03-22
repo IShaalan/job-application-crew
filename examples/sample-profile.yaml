@@ -1,0 +1,112 @@
+# Sample Candidate Profile — Alex Chen (FICTIONAL)
+# This file demonstrates the profile format. Replace all data with your own.
+
+name: Alex Chen
+location: Seattle, WA
+years_experience: 9
+career_path: Software Engineer → Product Manager
+
+# ─────────────────────────────────────────────
+# Professional Experience
+# ─────────────────────────────────────────────
+
+experience:
+  - title: Senior Product Manager
+    company: Streamline
+    location: Seattle, WA
+    start: Jan 2023
+    end: Present
+    type: product_management
+    highlights:
+      - Led cross-functional team of 12 (engineering, design, data science) to launch real-time collaboration platform, growing DAU from 8K to 45K in 10 months.
+      - Defined and executed API-first integration strategy connecting 15+ third-party tools, reducing customer onboarding time by 40%.
+      - Built experimentation framework running 30+ A/B tests per quarter, increasing trial-to-paid conversion by 22%.
+      - Owned product roadmap and quarterly OKR process, aligning 3 engineering squads to company-level revenue targets.
+
+  - title: Product Manager
+    company: DataFlow
+    location: San Francisco, CA
+    start: Sep 2020
+    end: Dec 2022
+    type: product_management
+    highlights:
+      - Launched self-serve analytics dashboard from 0 to 1, adopted by 200+ enterprise customers within 6 months.
+      - Reduced data pipeline latency by 65% by partnering with infrastructure team to redesign ingestion architecture.
+      - Conducted 80+ customer interviews and synthesized insights into a prioritization framework adopted across 3 product lines.
+      - Drove migration from legacy monolith to microservices, coordinating 4 engineering teams over 9-month rollout with zero downtime.
+
+  - title: Software Engineer
+    company: CodeBase
+    location: Portland, OR
+    start: Jun 2017
+    end: Aug 2020
+    type: engineering
+    highlights:
+      - Built RESTful APIs serving 2M+ requests/day supporting the core SaaS platform.
+      - Designed event-driven notification system reducing alert latency from minutes to under 5 seconds.
+      - Mentored 3 junior engineers and led weekly code review sessions.
+
+# ─────────────────────────────────────────────
+# Skills
+# ─────────────────────────────────────────────
+
+skills:
+  product:
+    - product strategy
+    - roadmap planning
+    - user research
+    - A/B testing
+    - prioritization frameworks
+    - stakeholder management
+    - go-to-market strategy
+  technical:
+    - SQL
+    - Python
+    - REST APIs
+    - data modeling
+    - system design
+  tools:
+    - Figma
+    - Jira
+    - Amplitude
+    - Mixpanel
+    - Looker
+    - Confluence
+  methodologies:
+    - agile / scrum
+    - design thinking
+    - jobs-to-be-done
+
+# ─────────────────────────────────────────────
+# Education
+# ─────────────────────────────────────────────
+
+education:
+  - degree: MBA
+    institution: State University
+    year: 2020
+    focus: Technology Management
+
+  - degree: BS Computer Science
+    institution: Tech College
+    year: 2017
+
+# ─────────────────────────────────────────────
+# Side Projects
+# ─────────────────────────────────────────────
+
+side_projects:
+  - name: TaskFlow
+    description: >
+      Built a personal productivity app with 10K+ active users featuring
+      AI-powered task prioritization and calendar integration.
+
+# ─────────────────────────────────────────────
+# Key Achievements (for resume "Key Achievements" section)
+# ─────────────────────────────────────────────
+
+key_achievements:
+  - "Grew DAU from 8K to 45K in 10 months via real-time collaboration launch."
+  - "Reduced customer onboarding time 40% through API-first integration strategy."
+  - "Launched self-serve analytics adopted by 200+ enterprise customers in 6 months."
+  - "Increased trial-to-paid conversion 22% via structured experimentation framework."

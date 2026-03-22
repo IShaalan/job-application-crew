@@ -1,0 +1,49 @@
+# Sample Resume Configuration — Alex Chen (FICTIONAL)
+# Copy this file to your project root as .resume-config.yaml and edit with your details.
+
+contact:
+  name: Alex Chen
+  email: alex.chen@example.com
+  phone: "+1(555) 987 6543"
+  location: Seattle, WA
+  linkedin:
+    text: linkedin.com/in/alexchen
+    url: https://linkedin.com/in/alexchen
+  website:
+    text: alexchen.dev
+    url: https://alexchen.dev
+
+career_context:
+  transition: null                    # Set to "engineering_to_pm" if career-switching
+  target_role_family: product_manager
+  level: senior
+
+sections:
+  default: [summary, key_achievements, experience, skills, education]
+  additional: [side_projects]
+
+preferences:
+  resume_length: 1                    # Target number of pages
+  bullet_max_words: 25               # Hard limit per bullet
+  bullets_end_with_period: true       # Every bullet ends with "."
+  date_format: short                  # "Dec 2025" not "December 2025"
+  forbidden_words: [passionate, excited, genuinely, leverage, utilize]
+  tone: professional
+  cover_letter_words: 250-350         # Target word count range
+
+fixed_content:
+  # Side projects use canonical text — not rewritten per application
+  side_projects:
+    - name: "TaskFlow"
+      text: "Built a personal productivity app with 10K+ active users featuring AI-powered task prioritization and calendar integration."
+
+  # Roles listed here appear as title/company/dates only (no bullets)
+  title_only_roles:
+    - "Software Engineer | CodeBase | Portland, OR | Jun 2017 - Aug 2020"
+
+  # Roles whose bullets never change between applications
+  fixed_roles: []
+
+export:
+  name_pattern: "{name}-{doc_type}-{company}-{role}"
+  google_drive: false                 # Set true + add credentials to enable Drive export
