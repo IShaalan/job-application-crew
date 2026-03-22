@@ -191,32 +191,44 @@ What type of roles are you targeting?
 
 ## Step 4 — Fixed vs Dynamic Content
 
-Explain the concept, then present all roles and sections with best-guess toggles:
+You MUST show the user their actual extracted content organized into two categories. Do NOT just ask "do you want to adjust?" — list every item by name.
 
-```
-Some content stays identical across every application (saves time, ensures consistency).
-Other content gets tailored per job posting (maximizes relevance).
+First, apply these defaults to sort the user's content:
 
-FIXED (same every time — won't be rewritten per application):
-  ☑ [Side Project]: "Built X..."
-  ☑ [Old Role] | [Company] (title-only, no bullets)
-  ☐ [Recent Role] | [Company] — keep fixed or tailor per job?
-
-DYNAMIC (rewritten/selected per application):
-  ☑ Summary
-  ☑ Key Achievements
-  ☑ Current Role bullets
-  ☑ Skills section order and selection
-```
-
-**Default logic for best-guess toggles:**
+**Default logic:**
 - Side projects → FIXED (these rarely change)
-- Title-only roles → FIXED (no bullets to tailor)
+- Title-only roles (from Step 1) → FIXED (no bullets to tailor)
 - Roles older than 5 years → suggest FIXED
 - Current role and one role back → suggest DYNAMIC
 - Summary, Key Achievements, Skills → always DYNAMIC
 
-Let the user toggle any item. Record the results:
+Then present the FULL list with the user's actual data filled in. Example format:
+
+```
+Some resume content stays identical across every application (saves time and consistency).
+Other content gets tailored per job posting (maximizes relevance).
+
+Here's my suggestion based on your profile:
+
+FIXED (same every time — won't be rewritten per application):
+  ☑ Side Project: "TaskFlow — Built a productivity app with 10K+ active users..."
+  ☑ Junior Developer | CodeBase | 2017-2020 (title-only, no bullets)
+  ☑ Sales Engineer | OldCorp | 2015-2017 — 3 bullets, locked as-is
+  ☐ Designer | AgencyCo | 2018-2021 — keep fixed or tailor per job?
+
+DYNAMIC (rewritten/tailored per application):
+  ☑ Summary — always tailored to match the job posting
+  ☑ Key Achievements — selected based on what the role values
+  ☑ Product Manager | CurrentCo | 2021-Present — bullets tailored per job
+  ☑ Senior Designer | BigCo | 2018-2021 — bullets tailored per job
+  ☑ Skills section — order and selection based on job requirements
+
+Want to change any of these? You can move items between fixed and dynamic.
+```
+
+**CRITICAL: Replace every placeholder with the user's actual role titles, company names, dates, and project names from what was extracted in Step 1.** The user must see THEIR content, not generic placeholders.
+
+Record the results:
 - Fixed roles go into `fixed_content.fixed_roles` (with their canonical bullets)
 - Fixed side projects go into `fixed_content.side_projects` (with their canonical text)
 - Title-only roles go into `fixed_content.title_only_roles`
