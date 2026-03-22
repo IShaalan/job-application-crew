@@ -13,7 +13,7 @@ This system was refined over 95+ real job applications. The PM role pack is batt
 
 ```bash
 # 1. Install the plugin
-claude plugin add shaalan-sam/job-application-crew
+claude plugin add IShaalan/job-application-crew
 
 # 2. Create a directory for your job search
 mkdir my-job-search && cd my-job-search
@@ -114,7 +114,7 @@ To test the plugin locally without installing from GitHub:
 
 ```bash
 # Clone the repo
-git clone https://github.com/shaalan-sam/job-application-crew.git
+git clone https://github.com/IShaalan/job-application-crew.git
 
 # Create a test directory and cd into it
 mkdir /tmp/test-job-search && cd /tmp/test-job-search
