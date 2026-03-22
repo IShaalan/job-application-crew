@@ -4,6 +4,9 @@ Your AI-powered job application crew. Research, resume, cover letter -- one comm
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-Plugin-blue.svg)]()
+[![GitHub stars](https://img.shields.io/github/stars/IShaalan/job-application-crew?style=social)](https://github.com/IShaalan/job-application-crew/stargazers)
+
+If this helps your job search, a star helps others find it.
 
 ## Built from experience
 
