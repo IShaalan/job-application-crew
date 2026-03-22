@@ -22,8 +22,8 @@ When the user runs `/job-application`, check the argument:
 - `export` → Run Phase 9 only (export)
 - `export --format docx` → Export as DOCX via `scripts/generate_docx.py`
 - `export --format gdrive` → Export to Google Drive via `scripts/create_google_doc.py`
-- A URL or job posting text → Run the Full Workflow (below)
-- A job name (matching an existing `{jobs_dir}/{job_id}/` directory) → Resume the in-progress workflow
+- A URL or job posting text → Run the Pre-flight Check, then the Full Workflow (below)
+- A job name (matching an existing `{jobs_dir}/{job_id}/` directory) → Run the Pre-flight Check, then resume the in-progress workflow
 - No argument → Show usage help:
   ```
   job-application-crew plugin commands:
@@ -41,6 +41,38 @@ When the user runs `/job-application`, check the argument:
     /job-application export --format docx    — Export as DOCX
     /job-application export --format gdrive  — Export to Google Drive
   ```
+
+---
+
+## Pre-flight Check (runs before every application)
+
+Before starting or resuming any job application workflow, run these checks:
+
+### 1. Profile exists?
+Check if `candidate/profile.yaml` exists. If not:
+```
+No candidate profile found. Run /job-application init to set up your profile first.
+```
+Stop — do not proceed.
+
+### 2. Achievements health check
+Read `candidate/achievements.md`. Check if ALL entries are placeholders (contain "To be filled" or have empty Situation/Task/Action/Result fields).
+
+If all entries are placeholders:
+```
+Your achievement stories are all placeholders — this means your cover letters
+will be generic and miss the personal depth that makes candidates stand out.
+
+Want to add a few stories before we start? (takes about 5 minutes per story)
+
+  A) Yes — let's add 1-2 stories for my strongest roles
+  B) Skip — proceed with the application anyway
+```
+
+If the user picks A → invoke the enricher skill for their most recent role, then continue to the workflow.
+If the user picks B → proceed, but note that the strategist will flag thin stories again during the strategy phase.
+
+If at least some entries have real content → proceed without prompting.
 
 ---
 
