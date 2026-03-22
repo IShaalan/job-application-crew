@@ -455,27 +455,44 @@ export:
 - LinkedIn `text` should be the short display form (e.g., `linkedin.com/in/username`), `url` is the full URL
 - Website `text` and `url` can be `null` if user has no website
 
-## Step 7 — Completion
+## Step 7 — Completion and Enrichment Decision
 
 After writing all three files, print:
 
 ```
 Profile created! Here's what was set up:
 
-  candidate/profile.yaml     — [N] roles, [N] skills, [N] projects
-  candidate/achievements.md  — [N] placeholder stories (ready for enrichment)
+  candidate/profile.yaml      — [N] roles, [N] skills, [N] projects
+  candidate/achievements.md   — [N] placeholder stories
   candidate/resume-config.yaml — contact info, preferences, section config
-  knowledge/                 — starter knowledge files
-  jobs/                      — ready for your first application
-
-Run `/job-application <job posting URL or paste text>` to start your first application.
+  knowledge/                  — starter knowledge files
+  jobs/                       — ready for your first application
 ```
 
-If achievements.md contains only placeholder entries (no real story content), append:
+Then you MUST ask the user about enrichment — do NOT skip this:
 
 ```
-Tip: Run `/job-application enrich` to add detailed stories for your key roles.
-Strong stories make your cover letters significantly more compelling.
+Your profile is ready, but your achievement stories are still placeholders.
+Stories are what make cover letters compelling — without them, cover letters
+will be generic and miss the personal texture that makes a candidate stand out.
+
+Would you like to add a few stories now? (takes about 5 minutes per story)
+
+  A) Yes — let's enrich my top 2-3 roles now
+  B) Skip for now — I'll do it later with /job-application enrich
+
+If you skip, your first cover letter will work but won't be as strong.
+```
+
+**If A**: Invoke the enricher skill. Start with the user's most recent role. After each story, ask: "Want to add another, or move on?" Stop after 3 stories or when the user says to move on.
+
+**If B**: Print:
+```
+No problem. When you're ready, run:
+  /job-application enrich
+
+To start your first application:
+  /job-application <paste job posting URL or text>
 ```
 
 ## Error Handling
