@@ -2,8 +2,6 @@
 name: final-package-reviewer
 description: Reviews resume and cover letter together for coherence, consistency, and title matching. Use when doing a final check on the complete application package before export.
 user-invocable: false
-model: sonnet
-effort: medium
 context: fork
 agent: general-purpose
 ---

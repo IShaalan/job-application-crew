@@ -50,6 +50,15 @@ When the user runs `/job-application`, check the argument:
 
 Before starting or resuming any job application workflow, run these checks:
 
+### 0. Load workflow settings
+Read `candidate/resume-config.yaml` and extract the `workflow` section. Use these values throughout the workflow:
+
+- **`workflow.builder_model`** (default: `opus`) — pass as `model` when invoking researcher, resume-builder, cover-letter-builder
+- **`workflow.reviewer_model`** (default: `sonnet`) — pass as `model` when invoking resume-reviewer, cover-letter-reviewer, final-package-reviewer, humanizer
+- **`workflow.max_review_iterations`** (default: `3`) — after this many build→review cycles without passing, stop and ask the user for guidance instead of looping
+
+If the `workflow` section is missing, use the defaults above.
+
 ### 1. Profile exists?
 Check if `candidate/profile.yaml` exists. If not:
 ```

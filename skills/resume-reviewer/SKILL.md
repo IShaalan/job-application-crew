@@ -2,8 +2,6 @@
 name: resume-reviewer
 description: Reviews a resume using the ATS/Recruiter/Hiring Manager scoring framework. Identifies specific failure reasons for each dimension. Use when reviewing a resume draft, checking ATS compatibility, or getting a critical pre-submission evaluation.
 user-invocable: false
-model: sonnet
-effort: medium
 context: fork
 agent: general-purpose
 ---

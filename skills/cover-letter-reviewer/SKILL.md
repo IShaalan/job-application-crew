@@ -2,8 +2,6 @@
 name: cover-letter-reviewer
 description: Reviews a cover letter for coherence with the resume, specificity of claims, and overall persuasiveness. Use when evaluating a cover letter draft before submission.
 user-invocable: false
-model: sonnet
-effort: medium
 context: fork
 agent: general-purpose
 ---

@@ -256,7 +256,44 @@ ADDITIONAL (include when relevant to the specific job):
 
 Let the user check/uncheck. Items checked under ADDITIONAL are stored in `sections.additional` in `resume-config.yaml`. The resume builder will decide per-application whether to include them based on role fit.
 
-## Step 6 — Write Output Files
+## Step 6 — Workflow Settings
+
+Present these settings with sensible defaults. The user can accept the defaults or customize:
+
+```
+Almost done — a few workflow settings:
+
+  Model for builders (resume, cover letter, research):
+    → [opus] / sonnet / haiku
+    Builders do the creative, strategic work. Opus is best but slower and more expensive.
+
+  Model for reviewers (ATS check, humanizer, final review):
+    → opus / [sonnet] / haiku
+    Reviewers do mechanical checking. Sonnet is fast and accurate enough.
+
+  Max review iterations before asking you:
+    → [3]
+    After this many build-review cycles without passing, the system pauses
+    and asks for your input instead of looping forever.
+
+Press Enter to accept defaults, or type your changes.
+```
+
+**Defaults:**
+- Builder model: `opus` (best quality for creative work)
+- Reviewer model: `sonnet` (fast, good enough for scoring)
+- Max iterations: `3`
+
+Store in `resume-config.yaml` under `workflow`:
+
+```yaml
+workflow:
+  builder_model: opus       # model for researcher, resume-builder, cover-letter-builder
+  reviewer_model: sonnet    # model for resume-reviewer, cover-letter-reviewer, final-package-reviewer, humanizer
+  max_review_iterations: 3  # pause and ask user after this many build-review cycles
+```
+
+## Step 7 — Write Output Files
 
 After all steps are complete, write three files.
 
@@ -442,6 +479,11 @@ fixed_content:
   #   bullets:
   #     - "Exact bullet text that never changes."
 
+workflow:
+  builder_model: opus        # researcher, resume-builder, cover-letter-builder
+  reviewer_model: sonnet     # resume-reviewer, cover-letter-reviewer, final-package-reviewer, humanizer
+  max_review_iterations: 3   # pause and ask user after N build-review cycles
+
 export:
   name_pattern: "{name}-{doc_type}-{company}-{role}"
   google_drive: false
@@ -456,7 +498,7 @@ export:
 - LinkedIn `text` should be the short display form (e.g., `linkedin.com/in/username`), `url` is the full URL
 - Website `text` and `url` can be `null` if user has no website
 
-## Step 7 — Completion and Enrichment Decision
+## Step 8 — Completion and Enrichment Decision
 
 After writing all three files, print:
 
