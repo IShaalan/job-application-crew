@@ -15,20 +15,20 @@ This system was refined over 95+ real job applications. The PM role pack is batt
 ## Quick Start
 
 ```bash
-# 1. Install the plugin
-claude plugin add IShaalan/job-application-crew
+# 1. Clone the plugin
+git clone https://github.com/IShaalan/job-application-crew.git
 
 # 2. Create a directory for your job search
 mkdir my-job-search && cd my-job-search
 
-# 3. Start Claude Code from that directory
-claude
+# 3. Start Claude Code with the plugin loaded
+claude --plugin-dir /path/to/job-application-crew
 
 # 4. Inside Claude Code, set up your profile (one-time)
-/job-application init
+/job-application-crew:job-application init
 
 # 5. Apply to a job
-/job-application <paste job posting URL or text>
+/job-application-crew:job-application <paste job posting URL or text>
 ```
 
 ## How It Works
@@ -75,15 +75,15 @@ Role packs include tailored bullet libraries, review patterns, and strategy play
 ## Commands
 
 ```
-/job-application init                    # One-time profile setup
-/job-application <job posting>           # Full workflow
-/job-application research                # Re-run research phase
-/job-application build                   # Re-run resume build
-/job-application cover-letter            # Re-run cover letter
-/job-application enrich                  # Add achievement stories
-/job-application export                  # Export final files
-/job-application export --format docx    # Export as DOCX
-/job-application export --format gdrive  # Export to Google Drive
+/job-application-crew:job-application init                    # One-time profile setup
+/job-application-crew:job-application <job posting>           # Full workflow
+/job-application-crew:job-application research                # Re-run research phase
+/job-application-crew:job-application build                   # Re-run resume build
+/job-application-crew:job-application cover-letter            # Re-run cover letter
+/job-application-crew:job-application enrich                  # Add achievement stories
+/job-application-crew:job-application export                  # Export final files
+/job-application-crew:job-application export --format docx    # Export as DOCX
+/job-application-crew:job-application export --format gdrive  # Export to Google Drive
 ```
 
 ## Export Options
@@ -126,7 +126,7 @@ mkdir /tmp/test-job-search && cd /tmp/test-job-search
 claude --plugin-dir /path/to/job-application-crew
 
 # Inside Claude Code, test the workflow
-/job-application init
+/job-application-crew:job-application init
 ```
 
 To reset and test again:
