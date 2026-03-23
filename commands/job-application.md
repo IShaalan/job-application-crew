@@ -26,7 +26,13 @@ When the user runs `/job-application`, check the argument:
 - `export --format gdrive` → Export to Google Drive via `scripts/create_google_doc.py`
 - A URL or job posting text → Run the Pre-flight Check, then the Full Workflow (below)
 - A job name (matching an existing `{jobs_dir}/{job_id}/` directory) → Run the Pre-flight Check, then resume the in-progress workflow
-- No argument → Show usage help:
+- `version` → Read and display the version from `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json` and the latest git commit hash from `${CLAUDE_PLUGIN_ROOT}`: run `git -C "${CLAUDE_PLUGIN_ROOT}" log --oneline -1 2>/dev/null`. Display:
+  ```
+  job-application-crew v{version}
+  commit: {short hash} {message}
+  plugin path: {CLAUDE_PLUGIN_ROOT}
+  ```
+- No argument → Show usage help (include `version` in the list):
   ```
   job-application-crew plugin commands:
     /job-application init                    — Set up candidate profile (run once)
@@ -42,6 +48,7 @@ When the user runs `/job-application`, check the argument:
     /job-application export                  — Re-run export phase for current job
     /job-application export --format docx    — Export as DOCX
     /job-application export --format gdrive  — Export to Google Drive
+    /job-application version                 — Show plugin version and commit
   ```
 
 ---

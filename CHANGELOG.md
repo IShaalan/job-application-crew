@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0 (2026-03-22)
+
+- Use Skill tool invocations instead of manual subagent spawning (major performance fix)
+- Add no-bash rule to all analysis skills
+- Add user-configurable workflow settings (builder/reviewer model, max iterations)
+- Add export setup step to onboarding wizard (DOCX, Google Drive)
+- Add pre-flight achievement health check before every application
+- Add version sub-command
+- Fix onboarder: faster bootstrap, better import prompt, show actual content in fixed/dynamic step
+- Fix skill frontmatter: context:fork, user-invocable, model/effort settings
+- Update README for local plugin usage (--plugin-dir)
+
 ## 1.0.0 (2026-03-22)
 
 Initial release.
