@@ -91,15 +91,7 @@ If at least some entries have real content → proceed without prompting.
 
 **Purpose:** Set up the candidate profile and configure the plugin for this repo. Delegates to the `onboarder` skill.
 
-Spawn the `onboarder` skill as a subagent (Task tool, subagent_type="general-purpose"). Provide:
-- The full onboarder skill instructions as the task prompt
-- The current working directory path
-- Whether `candidate/resume-config.yaml` already exists (and its contents if so)
-- Whether `candidate/profile.yaml` already exists
-- Whether `candidate/achievements.md` already exists
-- Instruction to write config to `candidate/resume-config.yaml`
-
-The onboarder skill handles all interactive prompts and file creation.
+Invoke the `onboarder` skill using the Skill tool. The skill handles all interactive prompts and file creation — it knows where to find and write all files.
 
 ---
 
@@ -107,14 +99,7 @@ The onboarder skill handles all interactive prompts and file creation.
 
 **Purpose:** Add, edit, or remove entries in the candidate profile. Delegates to the `enricher` skill.
 
-Spawn the `enricher` skill as a subagent (Task tool, subagent_type="general-purpose"). Provide:
-- The full enricher skill instructions as the task prompt
-- The mode: `add` (default), `edit` (if `--edit` flag), or `remove` (if `--remove` flag)
-- Full content of `candidate/profile.yaml`
-- Full content of `candidate/achievements.md`
-- Full content of `candidate/resume-config.yaml` (for path resolution)
-
-The enricher skill handles all interactive prompts and file updates.
+Invoke the `enricher` skill using the Skill tool. Pass the mode as arguments: no args for add, `--edit` for edit, `--remove` for remove. The skill handles all interactive prompts and file updates.
 
 ---
 
@@ -252,13 +237,11 @@ human_context: []
 
 ## Phase 2: Research & Strategy
 
-Spawn the `researcher` skill as a subagent (Task tool, subagent_type="general-purpose"). Provide:
-- The full researcher skill instructions as the task prompt
-- Job posting content
-- Company name
-- First 100 lines of `candidate/profile.yaml` as candidate summary
-- Full content of `knowledge/strategy-playbook.md` (if exists)
-- Instruction to write output to `{jobs_dir}/{job_id}/artifacts/research.md`
+Invoke the `researcher` skill using the Skill tool. Before invoking, tell it:
+- The job posting path: `{jobs_dir}/{job_id}/job-posting.md`
+- The output paths: `{jobs_dir}/{job_id}/artifacts/research.md` and `{jobs_dir}/{job_id}/artifacts/strategy.md`
+
+The skill knows where to find `candidate/profile.yaml`, `knowledge/role-packs/`, and other files — do NOT read and pass their content manually.
 
 After the researcher completes, create `{jobs_dir}/{job_id}/artifacts/strategy.md`:
 
@@ -339,39 +322,32 @@ If approved → update `workflow-state.yaml`: `checkpoints.strategy.status: "app
 
 ## Phase 4: Resume Build Loop
 
-Maximum 2 iterations. Track in `checkpoints.resume.current_version`.
+Maximum iterations: read `workflow.max_review_iterations` from `candidate/resume-config.yaml` (default: 3). Track in `checkpoints.resume.current_version`.
 
 ### Each iteration:
 
-**Build step:** Spawn `resume-builder` skill as subagent with:
-- Full resume-builder skill instructions as task prompt
-- Full content of `{jobs_dir}/{job_id}/artifacts/strategy.md`
-- Full content of `candidate/profile.yaml`
-- Full content of `knowledge/bullet-library.yaml` (if exists)
-- Applicable role pack from `knowledge/role-packs/` (if one matches the role type)
-- Content of `candidate/resume-config.yaml` (for formatting preferences)
-- Content of previous review (only if iteration > 1)
-- Instruction to write:
-  - `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
-  - `{jobs_dir}/{job_id}/artifacts/resume-rationale-v{n}.md`
+**Build step:** Invoke the `resume-builder` skill using the Skill tool. Before invoking, tell it:
+- The strategy file path: `{jobs_dir}/{job_id}/artifacts/strategy.md`
+- The job posting path: `{jobs_dir}/{job_id}/job-posting.md`
+- The output path: `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
+- The rationale path: `{jobs_dir}/{job_id}/artifacts/resume-rationale-v{n}.md`
+- If iteration > 1: the previous review path `{jobs_dir}/{job_id}/artifacts/resume-review-v{n-1}.md`
 
-**Review step:** Spawn `resume-reviewer` skill as subagent with:
-- Full resume-reviewer skill instructions as task prompt
-- Full content of `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
-- Full content of `{jobs_dir}/{job_id}/artifacts/strategy.md`
-- Original job posting text
-- Full content of `knowledge/review-patterns.md` (if exists)
-- Instruction to write output to `{jobs_dir}/{job_id}/artifacts/resume-review-v{n}.md`
-- Instruction to end the review with exactly one of:
-  - `VERDICT: APPROVED`
-  - `VERDICT: NEEDS REVISION`
+The skill knows where to find `candidate/profile.yaml`, `candidate/resume-config.yaml`, and `knowledge/` files — do NOT read and pass their content manually.
+
+**Review step:** Invoke the `resume-reviewer` skill using the Skill tool. Before invoking, tell it:
+- The resume path: `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
+- The strategy path: `{jobs_dir}/{job_id}/artifacts/strategy.md`
+- The job posting path: `{jobs_dir}/{job_id}/job-posting.md`
+- The output path: `{jobs_dir}/{job_id}/artifacts/resume-review-v{n}.md`
+- End the review with exactly one of: `VERDICT: APPROVED` or `VERDICT: NEEDS REVISION`
 
 **Loop decision:** Read the last line of the review file.
 - `VERDICT: APPROVED` → exit loop
-- `VERDICT: NEEDS REVISION` and current_version < 2 → increment version, loop
-- `VERDICT: NEEDS REVISION` and current_version = 2 → exit loop (still present to human)
+- `VERDICT: NEEDS REVISION` and current_version < max_review_iterations → increment version, loop
+- `VERDICT: NEEDS REVISION` and current_version = max_review_iterations → exit loop (present to human)
 
-**Version immutability rule:** Once `resume-v{n}.md` is created, never edit it in-place. Each reviewer iteration must create a new `v{n+1}` file. Use `cp drafts/resume-v{n}.md drafts/resume-v{n+1}.md` first, then edit only the new file.
+**Version immutability rule:** Once `resume-v{n}.md` is created, never edit it in-place. Each iteration creates a new `v{n+1}` file.
 
 Update `workflow-state.yaml` after each iteration.
 
@@ -412,23 +388,20 @@ If approved → update `workflow-state.yaml`: `checkpoints.resume.status: "appro
 
 Same loop structure as Phase 4 (maximum 2 iterations).
 
-**Build step:** Spawn `cover-letter-builder` skill as subagent with:
-- Full cover-letter-builder skill instructions as task prompt
-- Full content of approved resume (`drafts/resume-v{n}.md`)
-- Full content of `{jobs_dir}/{job_id}/artifacts/strategy.md`
-- Full content of `{jobs_dir}/{job_id}/artifacts/research.md`
-- Full content of `candidate/profile.yaml`
-- Full content of `candidate/achievements.md`
-- The `human_context` array from workflow-state.yaml
-- Content of `candidate/resume-config.yaml` (for formatting preferences)
-- Instruction to write:
-  - `{jobs_dir}/{job_id}/drafts/cover-letter-v{n}.md`
-  - `{jobs_dir}/{job_id}/artifacts/cover-letter-rationale-v{n}.md`
+**Build step:** Invoke the `cover-letter-builder` skill using the Skill tool. Before invoking, tell it:
+- The approved resume path: `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
+- The strategy path: `{jobs_dir}/{job_id}/artifacts/strategy.md`
+- The research path: `{jobs_dir}/{job_id}/artifacts/research.md`
+- The job posting path: `{jobs_dir}/{job_id}/job-posting.md`
+- The output path: `{jobs_dir}/{job_id}/drafts/cover-letter-v{n}.md`
+- Any human context from workflow-state.yaml
+- If iteration > 1: the previous review path
 
-**Review step:** Spawn `cover-letter-reviewer` skill as subagent with:
-- Full cover-letter-reviewer skill instructions as task prompt
-- Full content of cover letter draft
-- Full content of approved resume
+The skill knows where to find `candidate/profile.yaml`, `candidate/achievements.md`, and `candidate/resume-config.yaml` — do NOT read and pass their content manually.
+
+**Review step:** Invoke the `cover-letter-reviewer` skill using the Skill tool. Before invoking, tell it:
+- The cover letter path: `{jobs_dir}/{job_id}/drafts/cover-letter-v{n}.md`
+- The approved resume path
 - Full content of strategy.md
 - Instruction to write `{jobs_dir}/{job_id}/artifacts/cover-letter-review-v{n}.md`
 - Instruction to end with `VERDICT: APPROVED` or `VERDICT: NEEDS REVISION`
@@ -439,24 +412,21 @@ Same loop structure as Phase 4 (maximum 2 iterations).
 
 ## Phase 7: Humanizer Pass
 
-Spawn `humanizer` skill as subagent with:
-- Full humanizer skill instructions as task prompt
-- Full content of final resume draft
-- Full content of final cover letter draft
-- Full content of `candidate/resume-config.yaml` (for voice and style preferences)
-- Instruction to write `{jobs_dir}/{job_id}/artifacts/humanizer-report.md`
-- Instruction to apply obvious fixes directly to draft files; flag ambiguous issues in the report
+Invoke the `humanizer` skill using the Skill tool. Before invoking, tell it:
+- The resume path: `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
+- The cover letter path: `{jobs_dir}/{job_id}/drafts/cover-letter-v{n}.md`
+- The output path: `{jobs_dir}/{job_id}/artifacts/humanizer-report.md`
+- Apply obvious fixes directly to draft files; flag ambiguous issues in the report
 
 ---
 
 ## Checkpoint 3: Final Package Review
 
-Spawn `final-package-reviewer` skill as subagent with:
-- Full final-package-reviewer skill instructions as task prompt
-- Final resume content
-- Final cover letter content
-- Strategy content
-- Instruction to write `{jobs_dir}/{job_id}/artifacts/final-package-review.md`
+Invoke the `final-package-reviewer` skill using the Skill tool. Before invoking, tell it:
+- The resume path: `{jobs_dir}/{job_id}/drafts/resume-v{n}.md`
+- The cover letter path: `{jobs_dir}/{job_id}/drafts/cover-letter-v{n}.md`
+- The strategy path: `{jobs_dir}/{job_id}/artifacts/strategy.md`
+- The output path: `{jobs_dir}/{job_id}/artifacts/final-package-review.md`
 
 Present to user:
 ```
